@@ -2,10 +2,13 @@ package com.example.calc;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class Calculator extends Activity implements OnClickListener, TextWatcher {
 	EditText etResult;
@@ -65,5 +68,58 @@ public class Calculator extends Activity implements OnClickListener, TextWatcher
 		button9.setOnClickListener(this);
 		btnCalculate.setOnClickListener(this);
 	}
-
+	@Override
+	public void onClick(View view) {
+		switch (view.getId()) {
+		case R.id.button0:
+			etResult.append(button0.getText());
+			break;
+		case R.id.button1:
+			etResult.append(button1.getText());
+			break;
+		case R.id.button2:
+			etResult.append(button2.getText());
+			break;
+		case R.id.button3:
+			etResult.append(button3.getText());
+			break;
+		case R.id.button4:
+			etResult.append(button4.getText());
+			break;
+		case R.id.button5:
+			etResult.append(button5.getText());
+			break;
+		case R.id.button6:
+			etResult.append(button6.getText());
+			break;
+		case R.id.button7:
+			etResult.append(button7.getText());
+			break;
+		case R.id.button8:
+			etResult.append(button8.getText());
+			break;
+		case R.id.button9:
+			etResult.append(button9.getText());
+			break;
+		case R.id.btnPlus:
+			etResult.append(btnPlus.getText());
+			break;
+		case R.id.btnMinus:
+			etResult.append(btnMinus.getText());
+			break;
+		case R.id.btnMultiply:
+			etResult.append(btnMultiply.getText());
+			break;
+		case R.id.btnDivide:
+			etResult.append(btnDivide.getText());
+			break;
+		case R.id.btnClear:
+			etResult.setText("");
+			break;
+		case R.id.btnAbs:
+			if (etResult.getText().length() > 0) {
+				double_num1 = Double.valueOf(etResult.getText().toString());
+				double_num1 = Math.abs(double_num1);
+				etResult.setText(String.valueOf(double_num1));
+			}
 }
