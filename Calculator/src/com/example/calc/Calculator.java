@@ -122,4 +122,96 @@ public class Calculator extends Activity implements OnClickListener, TextWatcher
 				double_num1 = Math.abs(double_num1);
 				etResult.setText(String.valueOf(double_num1));
 			}
+
+			
+			break;
+		case R.id.btnDiv:
+//			if (etResult.getText().length() > 0) {
+//				int_num1 = Integer.valueOf(etNumber1.getText().toString());
+//				int_num2 = Integer.valueOf(etNumber2.getText().toString());
+//				int_result = int_num1 / int_num2;
+//				etResult.setText(String.valueOf(int_result));
+//			}
+			break;
+		case R.id.btnMod:
+//			if (etNumber1.getText().length() > 0 && etNumber2.getText().length() > 0) {
+//				int_num1 = Integer.valueOf(etNumber1.getText().toString());
+//				int_num2 = Integer.valueOf(etNumber2.getText().toString());
+//				int_result = int_num1 % int_num2;
+//				etResult.setText(String.valueOf(int_result));
+//			}
+			break;
+		case R.id.btnStepen:
+			etResult.append("^");
+			break;
+		default:
+			String result = etResult.getText().toString();
+
+			for (int counter = 0; counter < result.length(); counter++) {
+				if (result.charAt(counter) == '+') {
+					double_num1 = Double.valueOf(result.substring(0, counter));
+					double_num2 = Double.valueOf(result.substring(counter + 1, result.length()));
+					etResult.setText(String.valueOf(sum(double_num1, double_num2)));
+				} else if (result.charAt(counter) == '-') {
+					double_num1 = Double.valueOf(result.substring(0, counter));
+					double_num2 = Double.valueOf(result.substring(counter + 1, result.length()));
+					Toast.makeText(this, String.valueOf(double_num1), Toast.LENGTH_LONG).show();
+					Toast.makeText(this, String.valueOf(double_num2), Toast.LENGTH_LONG).show();
+					etResult.setText(String.valueOf(subtract(double_num1, double_num2)));
+				} else if (result.charAt(counter) == '*') {
+					double_num1 = Double.valueOf(result.substring(0, counter));
+					double_num2 = Double.valueOf(result.substring(counter + 1, result.length()));
+					etResult.setText(String.valueOf(multiply(double_num1, double_num2)));
+				} else if (result.charAt(counter) == '/') {
+					double_num1 = Double.valueOf(result.substring(0, counter));
+					double_num2 = Double.valueOf(result.substring(counter + 1, result.length()));
+					etResult.setText(String.valueOf(divide(double_num1, double_num2)));
+				}
+			}
+			break;
+		}
+	}
+
+	private double sum(double a, double b) {
+		double c = a + b;
+		return c;
+	}
+
+	private double subtract(double a, double b) {
+		double c = a - b;
+		return c;
+	}
+
+	private double multiply(double a, double b) {
+		double c = a * b;
+		return c;
+	}
+
+	private double divide(double a, double b) {
+		double c = a / b;
+		return c;
+	}
+
+	@Override
+	public void afterTextChanged(Editable arg0) {
+	}
+
+	@Override
+	public void beforeTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {
+	}
+
+	@Override
+	public void onTextChanged(CharSequence s, int start, int before, int count) {
+		if (etResult.getText().length() == 0) {
+			if (btnAbs.isEnabled()) {
+				btnAbs.setEnabled(false);
+				btnCalculate.setEnabled(false);
+			}
+		} else if (!btnAbs.isEnabled()) {
+			btnAbs.setEnabled(true);
+			btnCalculate.setEnabled(true);
+		}
+
+	}
+
 }
